@@ -1,0 +1,24 @@
+{% extends "taskapp/navbar.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container py-5">
+
+    <br>
+        <p class="h5">{{blog.doctor_id}}</p>
+        <blockquote class="blockquote">
+        <p class="h2">{{blog.title}}</p><br>
+        <footer class="blockquote-footer">by <cite title="Source Title">{{blog.author}}</cite></footer>
+        </blockquote>
+        <h3><span class="badge bg-light text-dark">{{blog.category}}</span></h3>
+    <br>
+        <div class="img w-50"> <img src="{% static blog.thumbnail.url %}"class="img-thumbnail"  alt="blog thumbnail">
+        </div>
+    <br>
+        <p class="h5">{{blog.summary}}</p>
+    <br>
+        <div>{{blog.content}}
+        </div>
+</div>
+
+{% endblock %}

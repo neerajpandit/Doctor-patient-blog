@@ -1,0 +1,25 @@
+{% extends "taskapp/navbar.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="container py-5">
+        <h1>Doctor All Post</h1>
+        <br>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for blog in bloglist %}
+                <div class="col m-3" style="width: 18rem;">
+                    <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="{% static blog.thumbnail.url %}" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">{{blog.title}}</h5>
+                        <p class="card-text">{{blog.summary|truncatewords:15}}</p>
+                        <a href="{% url 'blog:blog_detail_view' blog.id %}" class="btn btn-primary">Full Blog</a>
+                      </div>
+                    </div><br>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<title>Doctors</title>
+  <style>
+    .table{     
+      padding:200px;
+    }
+    .table tr{
+      margin:300px;
+      margin-left:1000px;
+      background:blue;
+      
+    }
+    .table tr th{     
+      width:400px;
+      height:50px;
+      background:green;
+    }
+    .table tr td{
+    
+      width:900px;
+      height:100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">  
+    <div class="row">
+      
+        <div class="panel-heading" style="text-align:center;">  
+        <table class="table table-hover" id="dev-table">
+          <h1>Doctor Dashboard</h1>
+          <p class="lead">            
+          <a class="btn btn-primary btn-lg"  role="button" aria-current="page" href="{% url 'blog:blog_create_view' %}">Write Blog</a>                                                  
+          <a class="btn btn-primary btn-lg" role="button" aria-current="page" href="{% url 'blog:my_blog_list_view' %}">My Blog</a>             
+          <a href="/logout" class="btn btn-primary btn-lg" role="button">Logout</a>
+          </p><hr>
+          <h2>Welcome {{user.username}}</h2>
+          <div class="col m-3" style="width: 18rem;">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="{% static user.doctor.profile_pic.url %}" alt="profile pic"><br>
+              <div class="card-body">
+                <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5><br>
+                {% comment %} <a href="{% url 'appointment:appointment_create_view' doctor_id=doctor.id %}" class="btn btn-primary">Book Appointment</a> {% endcomment %}
+              </div>
+            </div><br>
+        </div><hr>
+        <h1>All Doctor</h1>
+          <thead>
+            <tr>
+              <th>Pic</th>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Line1</th>
+              <th>city</th>
+              <th>Pincode</th>
+              <th>State</th>
+            </tr>
+          </thead>
+          {% for p in doctors  %}
+          <tr>
+            <td> <img src="{% static p.profile_pic.url %}" alt="Profile Pic" height="180px" width="200px" /></td>
+           
+            <td> {{p.get_name}}</td>
+            <td>{{p.user}}</td>
+            <td>{{p.line1}}</td>
+            <td>{{p.city}}</td>
+            <td>{{p.pincode}}</td>
+            <td>{{p.city}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+</div>
+  </div>
+</body>
+</html>

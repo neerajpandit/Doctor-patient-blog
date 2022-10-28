@@ -1,0 +1,24 @@
+{% extends "taskapp/navbar.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container py-5">
+
+   <center><h1>Doctor Appointment</h1></center><br><br>
+        <table class="table table-hover" id="dev-table">
+            <thead>
+                <tr>
+                    <th><h1>Doctor Name</h1></th>
+                    <th><h1>Date</h1></th>
+                    <th><h1>Time</h1></th>
+                </tr>
+            </thead>
+            <tr>
+                <td><h3>{{appointment.doctor.first_name}} {{appointment.doctor.last_name}}</h3></td>
+                <td><h3>{{appointment.date}}</h3></td>
+                <td><h3>{{appointment.get_time_slot_display}}</h3></td>
+            </tr>
+        </table>
+</div>
+
+{% endblock %}

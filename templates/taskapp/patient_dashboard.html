@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ <title>Doctors</title>
+  <style>
+    .table{  
+      padding:200px;
+    }
+    .table tr{
+      margin:300px;
+      margin-left:1000px;
+      background:blue;
+    }
+    .table tr th{
+      background:green;
+      width:400px;
+      height:50px;
+    }
+    .table tr td{
+    
+      width:400px;
+      height:100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">  
+    <div class="row">
+     
+        <div class="panel-heading" style="text-align:center;"> 
+          <h1>Patient Dashboard</h1>                               
+        <table class="table table-hover" id="dev-table"> 
+          <p class="lead">
+                                                  
+          <a class="btn btn-primary btn-lg" role="button" aria-current="page" href="{% url 'blog:blog_list_view' %}">Doctor Blog</a> 
+         
+            {% comment %} <a class="nav-link active" aria-current="page" href="{% url 'appointment:doctor_list_view' %}">Doctors</a> {% endcomment %}
+            <a class="btn btn-primary btn-lg" href="/doctorlist" role="button">Doctor List</a>
+                                    
+          <a href="/logout" class="btn btn-primary btn-lg" role="button">Logout</a>
+          </p><hr>
+          <h2>Welcome {{user.username}}</h2>
+          <div class="col m-3" style="width: 18rem;">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="{% static user.patient.profile_pic.url %}" alt="profile pic"><br>
+              <div class="card-body">
+                <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5><br>
+                {% comment %} <a href="{% url 'appointment:appointment_create_view' doctor_id=doctor.id %}" class="btn btn-primary">Book Appointment</a> {% endcomment %}
+              </div>
+            </div><br>
+        </div><hr>
+        <h1>All Patient</h1>
+          <thead>
+            <tr>
+              <th>Pic</th>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Line1</th>
+              <th>city</th>
+              <th>Pincode</th>
+              <th>State</th>
+            </tr>
+          </thead>
+          
+          {% for p in patient %}
+          <tr>
+            <td> <img src="{% static p.profile_pic.url %}" alt="Profile Pic" height="90px" width="90px" /></td>
+            {{user.city}}
+            <td> {{p.get_name}}</td>
+            <td>{{p.user}}</td>
+            <td>{{p.line1}}</td>
+            <td>{{p.city}}</td>
+            <td>{{p.pincode}}</td>
+            <td>{{p.city}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+</div>
+  </div>
+</body>
+</html>

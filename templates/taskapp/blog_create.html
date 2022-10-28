@@ -1,0 +1,19 @@
+ {% extends "taskapp/navbar.html" %} 
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container py-5">
+    <p class="lead">            
+        <a class="btn btn-primary btn-lg" role="button" aria-current="page" href="{% url 'blog:my_blog_list_view' %}">Go To Blog</a>             
+        </p>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <button class="btn btn-primary" type="submit">Post</button>
+        </form>
+
+</div>
+
+{% endblock %}
